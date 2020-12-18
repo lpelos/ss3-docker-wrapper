@@ -1,0 +1,19 @@
+version: "3.0"
+
+services:
+  app:
+    build: .
+    image: silverstripe
+    volumes:
+      - ./app:/var/www/app
+    ports:
+      - 80:80
+      - 3306:3306
+    command: >
+      bash -c "
+        /root/.composer/composer.phar install -d /var/www/app &&
+        cd /var/www/app &&
+        npm install &&
+        node_modules/bower/bin/bower install --allow-root &&
+        /run.sh
+      "
