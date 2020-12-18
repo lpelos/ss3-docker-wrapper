@@ -9,11 +9,4 @@ services:
     ports:
       - 80:80
       - 3306:3306
-    command: >
-      bash -c "
-        /root/.composer/composer.phar install -d /var/www/app &&
-        cd /var/www/app &&
-        npm install &&
-        node_modules/bower/bin/bower install --allow-root &&
-        /run.sh
-      "
+    command: bash -c "/run.sh"
