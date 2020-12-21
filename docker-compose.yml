@@ -1,12 +1,24 @@
 version: "3.0"
 
 services:
+  ### External services ###
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - 1025:1025
+      - 1080:1080
+
+  ### Application services ###
+
   app:
     build: .
-    image: silverstripe
+    image: ss3-docker-wrapper
     volumes:
       - ./app:/var/www/app
     ports:
       - 80:80
       - 3306:3306
+    depends_on:
+      - mailcatcher
     command: bash -c "/run.sh"
