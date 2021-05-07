@@ -85,13 +85,13 @@ To run either the following commands, the app's docker container must be up.
 ### Access log
 
 ```
-$ docker exec app tail -f /var/log/apache2/access.log
+$ docker-compose exec app tail -f /var/log/apache2/access.log
 ```
 
 ### Error log
 
 ```
-$ docker exec app tail -f /var/log/apache2/error.log
+$ docker-compose exec app tail -f /var/log/apache2/error.log
 ```
 
 ## MySQL Database
@@ -102,7 +102,7 @@ database you configured in the `./app/mysite/_config.php` file.
 ### Backup
 
 ```
-$ docker run --rm app /bin/bash -c 'mysqldump -u root -h localhost [database name] > /var/www/app/dump.sql'
+$ docker-compose run --rm app /bin/bash -c 'mysqldump -u root -h localhost [database name] > /var/www/app/dump.sql'
 ```
 
 ### Restoring
